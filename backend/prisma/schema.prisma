@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  name      String
+  avatar    String?
+  googleId  String?    @unique
+  campaigns Campaign[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Campaign {
+  id             String     @id @default(uuid())
+  name           String?
+  subject        String
+  body           String
+  startTime      DateTime
+  delaySeconds   Int        @default(2) // Minimum delay between emails in seconds
+  hourlyLimit    Int        @default(100) // Max emails per hour for this campaign/user
+  status         String     @default("PENDING") // PENDING, ACTIVE, COMPLETED
+  userId         String
+  user           User       @relation(fields: [userId], references: [id])
+  emails         EmailJob[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+model EmailJob {
+  id             String    @id @default(uuid())
+  toAddress      String
+  status         String    @default("SCHEDULED") // SCHEDULED, SENT, FAILED
+  error          String?
+  scheduledTime  DateTime
+  sentTime       DateTime?
+  campaignId     String
+  campaign       Campaign  @relation(fields: [campaignId], references: [id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([status, scheduledTime])
+}
