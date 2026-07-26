@@ -2,8 +2,7 @@
   <a href="https://github.com/ruthwik-thotapelli/reachinbox-email-scheduler">
     <img src="./frontend/public/banner.jpg" alt="ReachInbox Cover" style="width:100%; border-radius: 12px; margin-bottom: 20px;">
   </a>
-  <img src="https://raw.githubusercontent.com/ruthwik-thotapelli/reachinbox-email-scheduler/main/frontend/public/icons.svg" alt="Logo" width="90" height="90">
-  <h1 align="center" style="font-size: 2.5em; font-weight: 800; margin-top: 10px;">ReachInbox – Full-Stack Email Job Scheduler</h1>
+  <h1 align="center" style="font-size: 2.5em; font-weight: 800; margin-top: 10px;">🚀 ReachInbox – Full-Stack Email Job Scheduler</h1>
   
   <p align="center" style="font-size: 1.2em; color: #666;">
     <strong>A production-grade, highly concurrent email scheduling platform built for scale.</strong>
